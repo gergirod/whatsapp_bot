@@ -17,16 +17,6 @@ app = Flask(__name__)
 load_dotenv()
 
 
-documents = []
-doc_one_loader = PyPDFLoader("")
-doc_two_loadder = PyPDFLoader("")
-doc_three_loader = PyPDFLoader("")
-doc_four_loader = PyPDFLoader("")
-documents.extend(doc_one_loader.load())
-documents.extend(doc_two_loadder.load())
-documents.extend(doc_three_loader.load())
-documents.extend(doc_four_loader.load())
-
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -57,7 +47,7 @@ text_splitter = RecursiveCharacterTextSplitter(
         chunk_overlap = 200,
         length_function = len
     )
-chunks = get_text_chunks(get_pdf_text(["Resultados Fecha 1 General.pdf", "Aviso de Regata Cuba Wingfoil Cup 2024.pdf", "Resultados Fecha 1 Avanzados.pdf", "Resultados Fecha 1 intermedio.pdf"]))
+chunks = get_text_chunks(get_pdf_text(["", "", "", ""]))
 store = get_vectorstore(chunks)
 pdf_qa = ConversationalRetrievalChain.from_llm(
     ChatOpenAI(temperature=0, model_name='gpt-4'),
